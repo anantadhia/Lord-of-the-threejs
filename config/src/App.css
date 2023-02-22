@@ -4,6 +4,11 @@
 
   display: flex;
 }
+body {
+  border: none;
+  touch-action: none;
+  overflow: hidden;
+}
 h1 {
   color: aliceblue;
 }
