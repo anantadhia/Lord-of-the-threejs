@@ -9,27 +9,12 @@ import {
   AdaptiveDpr,
   AdaptiveEvents,
 } from "@react-three/drei";
-import { useLoader, useFrame } from "@react-three/fiber";
+import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { Suspense, useRef } from "react";
-import { useGesture } from "react-use-gesture";
+import { Suspense } from "react";
 
 const Experience = () => {
   const gltf = useLoader(GLTFLoader, "/model.glb");
-  const meshRef = useRef();
-
-  useFrame(() => {
-    meshRef.current.rotation.x += 0.01;
-    meshRef.current.rotation.y += 0.02;
-  });
-
-  // useGesture hook to define the touch gesture controls
-  const bind = useGesture({
-    onDrag: ({ offset: [x, y] }) => {
-      meshRef.current.rotation.x = y / 100;
-      meshRef.current.rotation.y = x / 100;
-    },
-  });
 
   return (
     <>
@@ -50,7 +35,7 @@ const Experience = () => {
           speed={2}
         />
         <Stage environment={"forest"} intensity={0.6} contactShadow={false}>
-          <mesh ref={meshRef} {...bind()}>
+          <mesh>
             <Float
               speed={1} // Animation speed, defaults to 1
               rotationIntensity={1} // XYZ rotation intensity, defaults to 1
