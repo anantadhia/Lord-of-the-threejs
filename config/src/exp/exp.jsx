@@ -13,12 +13,27 @@ import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { Suspense } from "react";
 
+function SparklesContainer({ sparkles }) {
+  return (
+    <>
+      {sparkles.map((sparkle) => (
+        <Sparkles
+          key={sparkle.color}
+          position={(0, 6, 0)}
+          count={sparkle.count}
+          size={3000}
+          opacity={0.05}
+          color={sparkle.color}
+        />
+      ))}
+    </>
+  );
+}
 const Experience = () => {
   const gltf = useLoader(GLTFLoader, "/model.glb");
 
   return (
     <>
-      {" "}
       <PresentationControls
         speed={0.6}
         global
@@ -42,12 +57,13 @@ const Experience = () => {
               floatIntensity={1} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
               floatingRange={[0.2, 0.4]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
             >
-              <Sparkles
-                position={(0, 6, 0)}
-                count={10}
-                size={3000}
-                opacity={0.07}
-                color={"rgb(255, 13, 0)"}
+              <SparklesContainer
+                sparkles={[
+                  { color: "rgb(0, 255, 76)", count: 3 },
+                  { color: "rgb(245, 226, 17)", count: 7 },
+                  { color: "rgb(222, 2, 2)", count: 9 },
+                  { color: "rgb(214, 53, 9)", count: 1 },
+                ]}
               />
               <Suspense fallback={null}>
                 <primitive object={gltf.scene} scale={0.1} />

@@ -13,6 +13,12 @@ body {
 h1 {
   color: aliceblue;
 }
+@font-face {
+  font-family: "Cinzel Decorative";
+  src: local("CinzelDecorative"),
+    url("./font/CinzelDecorative-Regular.ttf") format("truetype");
+}
+
 .title {
   color: rgb(151, 151, 151);
   position: absolute;
@@ -23,7 +29,7 @@ h1 {
   mix-blend-mode: color-dodge;
   text-align: center;
   opacity: 0;
-  animation: fadeIn 1s ease-in forwards;
+  animation: fadeIn 3s ease-in forwards;
   font-family: "Cinzel Decorative", cursive;
 }
 @keyframes fadeIn {
