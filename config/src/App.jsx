@@ -15,6 +15,7 @@ function Loader() {
 function App() {
   return (
     <div className="App">
+      <h1 className="title">Dark Lord's Ring</h1>
       <Canvas camera={{ position: [0, 0, 1] }}>
         <color attach="background" args={["#101010"]} />
         <Suspense fallback={<Loader />}>
