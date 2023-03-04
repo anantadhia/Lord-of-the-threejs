@@ -8,6 +8,7 @@ import {
   CameraShake,
   AdaptiveDpr,
   AdaptiveEvents,
+  DeviceOrientationControls,
 } from "@react-three/drei";
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
@@ -34,6 +35,7 @@ const Experience = () => {
 
   return (
     <>
+      <DeviceOrientationControls />
       <PresentationControls
         speed={0.6}
         global

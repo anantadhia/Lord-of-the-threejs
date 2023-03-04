@@ -2,7 +2,7 @@ import "./App.css";
 import { Canvas } from "@react-three/fiber";
 import Experience from "./exp/exp";
 import { Suspense } from "react";
-import { Html, useProgress } from "@react-three/drei";
+import { Html, useProgress, Preload } from "@react-three/drei";
 
 function Loader() {
   const { progress } = useProgress();
@@ -20,6 +20,7 @@ function App() {
         <color attach="background" args={["#101010"]} />
         <Suspense fallback={<Loader />}>
           <Experience />
+          <Preload all />
         </Suspense>
       </Canvas>
     </div>
