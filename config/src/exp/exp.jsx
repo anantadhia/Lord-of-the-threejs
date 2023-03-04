@@ -10,9 +10,28 @@ import {
   AdaptiveEvents,
   DeviceOrientationControls,
 } from "@react-three/drei";
-import { useLoader } from "@react-three/fiber";
+import { useLoader, useThree } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { Suspense } from "react";
+import { Suspense, useRef } from "react";
+
+function CameraWithDeviceOrientationControl() {
+  const cameraRef = useRef();
+  const { gl, camera } = useThree();
+  return (
+    <>
+      <DeviceOrientationControls
+        camera={camera}
+        ref={cameraRef}
+        args={[camera, gl.domElement]}
+      />
+      <perspectiveCamera
+        ref={cameraRef}
+        args={[75, window.innerWidth / window.innerHeight, 0.1, 1000]}
+        position={[0, 0, 5]}
+      />
+    </>
+  );
+}
 
 function SparklesContainer({ sparkles }) {
   return (
@@ -35,6 +54,7 @@ const Experience = () => {
 
   return (
     <>
+      <CameraWithDeviceOrientationControl />
       {/* <PresentationControls
         speed={0.6}
         global
@@ -88,7 +108,7 @@ const Experience = () => {
           />
         </mesh> */}
       {/* </PresentationControls> */}
-      <DeviceOrientationControls />
+
       <CameraShake
         maxYaw={0.1} // Max amount camera can yaw in either direction
         maxPitch={0.1} // Max amount camera can pitch in either direction
